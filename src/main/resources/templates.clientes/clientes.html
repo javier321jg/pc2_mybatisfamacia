@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>spring</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.1/css/bootstrap.min.css} "/>
+        <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/6.1.0/css/all.css} "/>
+        <style>
+            .red{
+                color: red;
+            }
+            .yelow{
+                color:#ffcc00;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h3>Lista de Clientes</h3>
+            <hr>
+            <button class="btn btn-danger mb-5"  data-toggle="modal" data-target="#modalGuardar" data-whatever="@mdo">Add</button>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-dark" id="tablita">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">NOMBRES</th>
+                                <th scope="col">APELLIDOS</th>
+                                <th scope="col">SEXO</th>
+                                <th scope="col">DNI</th>
+                                <th scope="col">TELEFONO</th>
+                                <th scope="col">RUC</th>  
+                                <th scope="col">EMAIL</th>
+                                <th scope="col">DIRECCIÓN</th>                                
+                                <th scope="col" colspan="2">ACCION</th>
+                            </tr>
+                        </thead>
+                        <tbody>                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal Guardar Cliente -->
+        <div class="modal fade" id="modalGuardar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Cliente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Nombres:</label>
+                                <input type="text" class="form-control" id="nombres">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Apellidos:</label>
+                                <input type="text" class="form-control" id="apellidos">
+                            </div>
+                            <div class="form-group" >
+                                <select class="form-select" id="sexo">
+                                  <option selected>Género</option>
+                                  <option value="M">Masculino.</option>
+                                  <option value="F">Femenino</option>
+                                </select>
+                            </div>
+                           
+                            
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">DNI</label>
+                                <input type="text" class="form-control" id="dni" >
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Teléfono</label>
+                                <input type="text" class="form-control" id="telefono" >
+                            </div> 
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">RUC</label>
+                                <input type="text" class="form-control" id="ruc" >
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">E-mail</label>
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                            </div>                            
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Dirección</label>
+                                <textarea class="form-control" id="direccion"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="guardar">Registrar Cliente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Modificar Cliente -->
+        <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modificar Cliente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Nombres:</label>
+                                <input type="text" class="form-control" id="editar_nombres">
+                                <input type="hidden" class="form-control" id="idcliente" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Apellidos:</label>
+                                <input type="text" class="form-control" id="editar_apellidos">
+                                <input type="hidden" class="form-control" id="idcliente"  value="0">
+                            </div> 
+
+                            <div class="form-group" >
+                                <select class="form-select" id="editar_sexo">
+                                  <option selected>Género</option>
+                                  <option value="M">Masculino.</option>
+                                  <option value="F">Femenino</option>
+                                </select>
+                            </div>                          
+                            
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">DNI:</label>
+                                <input type="text" class="form-control" id="editar_dni" >
+                                <input type="hidden" class="form-control" id="idcliente"  value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Teléfono:</label>
+                                <input type="text" class="form-control" id="editar_telefono" >
+                                <input type="hidden" class="form-control" id="idcliente" value="0">
+                            </div>  
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">RUC:</label>
+                                <input type="text" class="form-control" id="editar_ruc" >
+                                <input type="hidden" class="form-control" id="idcliente"  value="0">
+                            </div>  
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">E-mail:</label>
+                                <input type="text" class="form-control" id="editar_email" >
+                                <input type="hidden" class="form-control" id="idcliente"  value="0">
+                            </div>                              
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Dirección</label>
+                                <textarea class="form-control" id="editar_direccion"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="modificar">Modificar Cliente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+        <script th:src="@{/js/script.js}"></script>
+    </body>
+</html>

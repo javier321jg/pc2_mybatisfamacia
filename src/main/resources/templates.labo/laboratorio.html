@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.1/css/bootstrap.min.css} "/>
+        <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/6.1.0/css/all.css} "/>
+        <style>
+            .red{
+                color: red;
+            }
+            .yelow{
+                color:#ffcc00;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h3>Lista de Laboratorios</h3>
+            <hr>
+            <button class="btn btn-danger mb-5"  data-toggle="modal" data-target="#modalGuardar" data-whatever="@mdo">Agregar</button>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-bordered" id="tablita">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">NOMBRE</th>
+                                <th scope="col">DIRECCION</th>
+                                <th scope="col">TELEFONO</th>
+                                <th scope="col">ESTADO</th>
+                                <th scope="col" colspan="2">ACCION</th>
+                            </tr>
+                        </thead>
+                        <tbody>                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Guardar Post -->
+        <div class="modal fade" id="modalGuardar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Laboratorio</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Direccion:</label>
+                                <input type="text" class="form-control" id="direccion" placeholder="Direccion">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Telefono:</label>
+                                <input type="text" class="form-control" id="telefono" placeholder="Telefono">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Estado:</label>
+                                <input type="text" class="form-control" id="telefono" placeholder="Estado">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="guardar">Registrar Laboratorio</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Modificar Post -->
+        <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modificar Laboratorio</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="editar_nombre" placeholder="Nombre">
+                                <input type="hidden" class="form-control" id="idactor" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Direccion:</label>
+                                <input type="text" class="form-control" id="editar_direccion" placeholder="Direccion">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Telefono:</label>
+                                <input type="text" class="form-control" id="editar_telefono" placeholder="Telefono">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Estado:</label>
+                                <input type="text" class="form-control" id="editar_estado" placeholder="Estado">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="modificar">Modificar Laboratorio</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+        <script th:src="@{/js/labo.js}"></script>
+    </body>
+
+</html>
